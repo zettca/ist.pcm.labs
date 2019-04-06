@@ -24,9 +24,6 @@ void keyPressed() {
     println("\nError! Please select a number.");
     displayMenu();
   } else if (keyPressed.length() < 2) {
-    if(key == '4'){
-      restartInput();
-    }
     keyPressed += "" + key;
     print(key);
     parseInput();
@@ -75,9 +72,9 @@ void grayScale(int cont){
 void niceEffects(int choice) {
   switch (choice){
     case 1:
-      filter(THRESHOLD);
-    case 2:
       filter(INVERT);
+    case 2:
+      filter(THRESHOLD);
     default:
       restartInput();
   }
@@ -114,16 +111,20 @@ void parseInput() {
         restartInput();
       }
     } else if (firstChar == 3){
-      println("\n1) Threshold");
-      println("2) Invert");
+      println("\n1) Invert");
+      println("2) Threshold");
       niceEffects(secondChar);
-    }else {
+    } else if (firstChar == 4){
+      restartInput();
+    } else {
       println("\nUnknown option. Try again.");
     }
   }
 }
 
 void restartInput() {
+  loop();
   keyPressed = "";
+  setup();
   displayMenu();
 }
