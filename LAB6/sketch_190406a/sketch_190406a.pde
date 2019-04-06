@@ -12,9 +12,7 @@ void setup() {
 }
 
 void draw() {
-  loadPixels();
-  grayScale(defaultGray);  
-  updatePixels();
+  image(bg, 0, 0);
 }
 
 void mousePressed() {
@@ -26,6 +24,9 @@ void keyPressed() {
     println("\nError! Please select a number.");
     displayMenu();
   } else if (keyPressed.length() < 2) {
+    if(key == '4'){
+      restartInput();
+    }
     keyPressed += "" + key;
     print(key);
     parseInput();
@@ -37,6 +38,7 @@ void keyPressed() {
 }
 
 void grayScale(int cont){
+  loadPixels();
   bg.loadPixels();
   image(bg, 0, 0);
   
@@ -67,7 +69,7 @@ void grayScale(int cont){
       pixels[loc] = c;
     }
   }
-  
+  updatePixels();
 }
 
 void niceEffects(int choice) {
@@ -76,6 +78,8 @@ void niceEffects(int choice) {
       filter(THRESHOLD);
     case 2:
       filter(INVERT);
+    default:
+      restartInput();
   }
 }
 
@@ -84,6 +88,7 @@ void displayMenu() {
   println("1) Change the contrast.");
   println("2) Change the segmentation threshold.");
   println("3) View some nice effects.");
+  println("4) Restart.");
   print("-> ");
 }
 
@@ -109,7 +114,7 @@ void parseInput() {
         restartInput();
       }
     } else if (firstChar == 3){
-      println("\n 1) Threshold");
+      println("\n1) Threshold");
       println("2) Invert");
       niceEffects(secondChar);
     }else {
