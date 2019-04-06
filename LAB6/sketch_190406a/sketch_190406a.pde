@@ -1,5 +1,6 @@
 PImage bg;
 color gray = color(0.3*255, 0.59*255, 0.11*255);
+int keyPressed = 1;
 
 void setup() {
   bg = loadImage("PCMLab6.png");
@@ -9,8 +10,29 @@ void setup() {
 
 void draw() {
   loadPixels();
+  grayScale(keyPressed);  
+  updatePixels();
+}
+
+void mousePressed() {
+  saveFrame("final.png");
+}
+
+void keyPressed() {
+  if (key >= '0' && key <= '9') {
+    keyPressed = (int)key - 48;
+    loadPixels();
+    grayScale(keyPressed);  
+    updatePixels();
+  } else {
+    print("Please type an number\n");
+  }
+}
+
+void grayScale(int cont){
   bg.loadPixels();
   image(bg, 0, 0);
+  
   // We must also call loadPixels() on the PImage since we are going to read its pixels.  img.loadPixels(); 
   for (int x = 0; x < bg.width; x++ ) {
     for (int y = 0; y < bg.height; y++ ) {
@@ -24,9 +46,9 @@ void draw() {
       float b = blue (bg.pixels[loc]);
       int grey = (int)(r+g+b)/3;
       
-      r = grey + 0.3;
-      g = grey + 0.59;
-      b = grey + 0.11;
+      r = (grey + 0.3) * cont;
+      g = (grey + 0.59) * cont;
+      b = (grey + 0.11) * cont;
 
       // The RGB values are constrained between 0 and 255 before being set as a new color.      
       r = constrain(r, 0, 255); 
@@ -36,13 +58,7 @@ void draw() {
       // Make a new color and set pixel in the window
       color c = color(r, g, b);
       pixels[loc] = c;
-      
     }
   }
   
-  updatePixels();
-}
-
-void mousePressed() {
-  saveFrame("final.png");
 }
