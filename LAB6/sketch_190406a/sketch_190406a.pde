@@ -1,15 +1,19 @@
 PImage bg;
-int keyPressed = 1;
+String keyPressed = "";
+int defaultGray = 1;
+int i = 0;
 
 void setup() {
   bg = loadImage("PCMLab6.png");
   surface.setSize(bg.width, bg.height);
   noLoop();
+  println("Hi stranger!");
+  displayMenu();
 }
 
 void draw() {
   loadPixels();
-  grayScale(keyPressed);  
+  grayScale(defaultGray);  
   updatePixels();
 }
 
@@ -18,13 +22,17 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if (key >= '0' && key <= '9') {
-    keyPressed = (int)key - 48;
-    loadPixels();
-    grayScale(keyPressed);  
-    updatePixels();
+  if(Character.isLetter(key)){
+    println("\nError! Please select a number.");
+    displayMenu();
+  } else if (keyPressed.length() < 2) {
+    keyPressed += "" + key;
+    print(key);
+    parseInput();
   } else {
-    print("Please type an number\n");
+    println("\n\nError! Too many arguments. Select one option and one value.");
+    println("For example if I want to change the image contrast to 2 I type:  1 2");
+    restartInput();
   }
 }
 
@@ -60,4 +68,38 @@ void grayScale(int cont){
     }
   }
   
+}
+
+void displayMenu() {
+  println("\n\nPlease choose an option below followed by the value.");
+  println("1) Change the contrast.");
+  println("2) Change the segmentation threshold.");
+  print("-> ");
+}
+
+void parseInput() {
+  if(keyPressed.length() == 2){
+    int firstChar = Integer.parseInt(String.valueOf(keyPressed.charAt(0)));
+    int secondChar = Integer.parseInt(String.valueOf(keyPressed.charAt(1)));
+    restartInput();
+    if(firstChar == 1) {
+      if (secondChar >= 0 && secondChar <= 9) {
+        loadPixels();
+        grayScale(secondChar);
+        updatePixels();
+      } else {
+        println("Well, I said a number. Try again.");
+      }
+    } else if (firstChar == 2){
+      print("\nYou select the segmentation option followed by: ");
+      println(secondChar);
+    } else {
+      println("\nUnknown option. Try again.");
+    }
+  }
+}
+
+void restartInput() {
+  keyPressed = "";
+  displayMenu();
 }
