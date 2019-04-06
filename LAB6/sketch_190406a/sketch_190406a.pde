@@ -1,5 +1,4 @@
 PImage bg;
-color gray = color(0.3*255, 0.59*255, 0.11*255);
 int keyPressed = 1;
 
 void setup() {
