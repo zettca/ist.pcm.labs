@@ -70,10 +70,20 @@ void grayScale(int cont){
   
 }
 
+void niceEffects(int choice) {
+  switch (choice){
+    case 1:
+      filter(THRESHOLD);
+    case 2:
+      filter(INVERT);
+  }
+}
+
 void displayMenu() {
   println("\n\nPlease choose an option below followed by the value.");
   println("1) Change the contrast.");
   println("2) Change the segmentation threshold.");
+  println("3) View some nice effects.");
   print("-> ");
 }
 
@@ -88,12 +98,21 @@ void parseInput() {
         grayScale(secondChar);
         updatePixels();
       } else {
-        println("Well, I said a number. Try again.");
+        println("\nError! Second value must be number. Try again.");
+        restartInput();
       }
     } else if (firstChar == 2){
-      print("\nYou select the segmentation option followed by: ");
-      println(secondChar);
-    } else {
+      if(secondChar > 2){
+        filter(POSTERIZE, secondChar);
+      } else {
+        println("\nError! Second value must be between 2 and 255");
+        restartInput();
+      }
+    } else if (firstChar == 3){
+      println("\n 1) Threshold");
+      println("2) Invert");
+      niceEffects(secondChar);
+    }else {
       println("\nUnknown option. Try again.");
     }
   }
