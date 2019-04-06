@@ -24,9 +24,9 @@ void draw() {
       float b = blue (bg.pixels[loc]);
       int grey = (int)(r+g+b)/3;
       
-      r = grey * 0.3;
-      g = grey * 0.59;
-      b = grey * 0.11;
+      r = grey + 0.3;
+      g = grey + 0.59;
+      b = grey + 0.11;
 
       // The RGB values are constrained between 0 and 255 before being set as a new color.      
       r = constrain(r, 0, 255); 
