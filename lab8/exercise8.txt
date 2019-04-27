@@ -1,0 +1,15 @@
+PCM 2018-2019
+
+Second Processing Exercise (Histograms)
+Max XP: 400
+
+Using the provided image (PCMLab8.png) do the following (by directly accessing individual pixel and not by using predefined filters or specialised libraries):
+
+1. Calculate the image’s luminance Histogram (see lab 6). Each bar of the histogram should illustrate the original pixel colours and the pixels in the bar should be ordered by hue [150 XP].
+
+2. Calculate and draw a Histogram per primary colour (Red, Green, Blue). Each bar of the histogram should illustrate the original pixel colours and the pixels in the bar should be ordered by hue [150 XP].
+
+3. Convert the RGB image to CMY model and draw a Histogram per primary colour (Cyan, Magenta, Yellow, Black). Each bar of the histogram should illustrate the original pixel colours and the pixels in the bar should be ordered by hue [100 XP].
+
+
+In the materials folder you'll find the file 'example.gif' with a sample image's histogram for the colour Red (pixels are not ordered by hue), use it to get an idea of what is expected in this lab. You don't have to create the animation of the moving pixels (but feel free to!).
