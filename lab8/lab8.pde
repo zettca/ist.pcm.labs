@@ -2,7 +2,7 @@ PImage img;
 ArrayList<IntList> hist = null;
 
 void setup() {
-  img = loadImage("flower.png");
+  img = loadImage("PCMLab8.png");
   surface.setSize(img.width, img.height);
   noLoop();
 }
@@ -18,9 +18,16 @@ void drawHistogram() {
   
   for (int i = 0; i < img.width; i++) {
     int which = int(map(i, 0, img.width, 0, 255));
-    int y = int(map(hist.get(which).size(), 0, histMax, img.height, 0));
-    stroke(i);
-    line(i, img.height, i, y);
+    IntList il = hist.get(which);
+    int ilsize = il.size();
+    int yMin = int(map(ilsize, 0, histMax, img.height, 0));
+    
+    //println(i, yMin, ilsize, img.height - yMin);
+    for (int j = 0; j < il.size(); j+=2) {
+      int y = yMin + int((j/float(ilsize)) * (img.height - yMin));
+      stroke(color(il.get(j)));
+      point(i, y);
+    }
   }
 }
 
