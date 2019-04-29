@@ -26,7 +26,7 @@ ArrayList<IntList> calculateHistogram(String type) {
   
   for (int i = 0; i < img.width; i++) {
     for (int j = 0; j < img.height; j++) {
-      color c = get(i, j);
+      color c = img.get(i, j);
       int pos = getPos(c, type);
       IntList il = colors.get(pos);
       il.append(c);
@@ -34,8 +34,7 @@ ArrayList<IntList> calculateHistogram(String type) {
   }
   
   for (int i = 0; i < SIZE; i++) {
-    IntList il = colors.get(i);
-    il.sort();
+    colors.get(i).sort();
   }
 
   return colors;

@@ -23,7 +23,7 @@ void drawHistogram() {
     int yMin = int(map(ilsize, 0, histMax, img.height, 0));
     
     //println(i, yMin, ilsize, img.height - yMin);
-    for (int j = 0; j < il.size(); j+=2) {
+    for (int j = 0; j < il.size(); j++) {
       int y = yMin + int((j/float(ilsize)) * (img.height - yMin));
       stroke(color(il.get(j)));
       point(i, y);
