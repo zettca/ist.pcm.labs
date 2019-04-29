@@ -8,6 +8,12 @@ int getPos(color c, String type) {
       return int(green(c));
     case "blue":
       return int(blue(c));
+    case "cyan":
+      return 255 - int(red(c));
+    case "magenta":
+      return 255 - int(green(c));
+    case "yellow":
+      return 255 - int(blue(c));
     default:
       return int(brightness(c));
   }

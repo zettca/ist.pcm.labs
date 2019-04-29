@@ -65,6 +65,15 @@ void keyPressed() {
     case '4':
       updateHistogram("blue");
       break;
+    case '5':
+      updateHistogram("cyan");
+      break;
+    case '6':
+      updateHistogram("magenta");
+      break;
+    case '7':
+      updateHistogram("yellow");
+      break;
     default:
       reset();
       break;
