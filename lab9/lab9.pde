@@ -1,4 +1,5 @@
 PImage img;
+String imagePath = "moana.PNG";
 
 int size = 1;
 
@@ -11,7 +12,7 @@ int numLines = 0;
 boolean useAnimation = false;
 
 void setup() {
-  img = loadImage("PCMLab9.png");
+  img = loadImage(imagePath);
   surface.setSize(img.width, img.height);
   //noLoop();
   noStroke();

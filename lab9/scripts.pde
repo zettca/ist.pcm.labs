@@ -33,7 +33,7 @@ color getRGBAverage(int x, int y, int radius, float contrast, float brightness) 
 }
 
 void restoreDefaults() {
-  img = loadImage("PCMLab9.png");
+  img = loadImage(imagePath);
   size = 1;
   hueValue = 0;
   contrast = 0;
