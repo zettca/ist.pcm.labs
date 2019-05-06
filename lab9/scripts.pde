@@ -31,3 +31,11 @@ color getRGBAverage(int x, int y, int radius, float contrast, float brightness) 
     return c;
   }
 }
+
+void restoreDefaults() {
+  img = loadImage("PCMLab9.png");
+  size = 1;
+  hueValue = 0;
+  contrast = 0;
+  brightness = 0;
+}
