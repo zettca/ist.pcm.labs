@@ -7,6 +7,7 @@ color getRGBAverage(int x, int y, int radius, float contrast, float brightness) 
   float r = 0,  g = 0, b = 0;
   int num = 0;
 
+  colorMode(RGB, 255, 255, 255);
   for (int i = x - radius; i < x + radius; i++) {
     for (int j = y - radius; j < y + radius; j++) {
       if (i < 0 || i >= width || j < 0 || j >= height) continue;
@@ -19,6 +20,14 @@ color getRGBAverage(int x, int y, int radius, float contrast, float brightness) 
       num++;
     }
   }
-
-  return color(r/num, g/num, b/num);
+  
+  color c = color(r/num, g/num, b/num);
+  
+  if (hueValue > 0) {
+    colorMode(HSB, 360, 100, 100);
+    return color(hueValue, saturation(c), brightness(c));
+  } else {
+    colorMode(RGB, 255, 255, 255);
+    return c;
+  }
 }
