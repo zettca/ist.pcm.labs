@@ -1,3 +1,23 @@
+void handleEffects(String effect) {
+  switch(effect) {
+  case "WIPE":
+    performWipe();
+    break;
+  case "FADE":
+    performFade();
+    break;
+  case "DISSOLVE":
+    performDissolve();
+    break;
+  case "CHROMA":
+    performChroma();
+    break;
+  default:
+    performWipe();
+    break;
+  }
+}
+
 void performWipe() {
   int numLines = int(WIDTH * transitionPercentage);
 
@@ -41,7 +61,7 @@ void performDissolve() {
 
 float chromaDetect(color c) {
   float A = 1.0;
-  float B = 1.3;
+  float B = 1.4;
 
   float r = constrain(red(c), 0, 255);
   float g = constrain(green(c), 0, 255);
@@ -63,7 +83,7 @@ void performChroma() {
       color c1 = movie1.get(i, j);
       color c2 = movie2.get(i, j);
 
-      color c = (chromaDetect(c2) < 0.5) ? c1 : chromaAdjust(c2);
+      color c = (chromaDetect(c2) < 0) ? c1 : chromaAdjust(c2);
 
       set(i, j, c);
     }

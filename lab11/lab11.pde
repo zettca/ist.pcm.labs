@@ -1,6 +1,6 @@
 import processing.video.*;
 
-Movie movie, movie1, movie2;
+Movie movie1, movie2;
 
 final int WIDTH = 960;
 final int HEIGHT = 540;
@@ -15,7 +15,7 @@ void settings() {
 }
 
 void setup() {
-  String pathMovie1 = dataPath("sample.mp4"); // 320x240@15fps
+  String pathMovie1 = dataPath("PCMLab11-1.mov"); // 320x240@15fps
   String pathMovie2 = dataPath("PCMLab11-2.mov"); // 960x540@30fps
 
   movie1 = new Movie(this, pathMovie1);
@@ -25,12 +25,10 @@ void setup() {
   movie1.volume(0);
   movie2.loop();
   movie2.volume(0);
-
-  movie = movie1;
 }
 
 void draw() {
-  image(movie, 0, 0, WIDTH, HEIGHT);
+  image(movie1, 0, 0, WIDTH, HEIGHT);
 
   handleEffects(effect);
 
@@ -42,30 +40,27 @@ void draw() {
   }
 }
 
-void mouseClicked() {
-  transitionPercentage = TRANSITION_INCREMENT; // init transition
-}
-
 void movieEvent(Movie m) {
   m.read();
 }
 
-void handleEffects(String effect) {
-  switch(effect) {
-  case "WIPE":
-    performWipe();
+void keyPressed() {
+  switch (key) {
+  case '1':
+    effect = "WIPE";
     break;
-  case "FADE":
-    performFade();
+  case '2':
+    effect = "FADE";
     break;
-  case "DISSOLVE":
-    performDissolve();
+  case '3':
+    effect = "DISSOLVE";
     break;
-  case "CHROMA":
-    performChroma();
+  case '4':
+    effect = "CHROMA";
     break;
   default:
-    performWipe();
     break;
   }
+
+  transitionPercentage = TRANSITION_INCREMENT; // init transition
 }
